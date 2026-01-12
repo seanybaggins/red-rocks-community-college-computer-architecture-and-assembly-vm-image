@@ -37,3 +37,12 @@ There is a known race condition during the OVA build process related to memory r
 **Workaround:**
 - Rebuild if the build fails due to memory issues
 
+### GitHub Runner Storage Limitations
+
+The storage space required to build the disk image exceeds what is available on GitHub-hosted runners (~14GB free space). This prevents the CI/CD pipeline from successfully building the image.
+
+**Future Improvement:**
+- Self-hosted runners with more disk space, or
+- Disk cleanup optimizations to reduce build footprint, or
+- Smaller base image configuration
+
