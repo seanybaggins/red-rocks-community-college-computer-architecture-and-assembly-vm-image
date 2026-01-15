@@ -21,14 +21,8 @@
   # Enable VirtualBox guest additions
   virtualisation.virtualbox.guest.enable = true;
 
-  # Configure for VirtualBox OVA generation
-  virtualisation.vmVariant = {
-    virtualisation = {
-      memorySize = 8192; # 8GB for build process
-      cores = 4;
-      diskSize = 50960; # 40GB for larger closure
-    };
-  };
+  # Configure disk size for VirtualBox OVA
+  virtualisation.diskSize = 10240; # 10GB disk
 
   # Networking
   networking.hostName = "student-vm";
