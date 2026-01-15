@@ -35,17 +35,17 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Desktop environment
-  services.xserver = {
-    enable = true;
-    displayManager.lightdm.enable = true;
-    desktopManager.xfce.enable = true;
-    # VirtualBox graphics driver
-    videoDrivers = [
-      "vmware"
-      "vesa"
-      "modesetting"
-    ];
-  };
+  #services.xserver = {
+  #  enable = true;
+  #  displayManager.lightdm.enable = true;
+  #  desktopManager.xfce.enable = true;
+  #  # VirtualBox graphics driver
+  #  videoDrivers = [
+  #    "vmware"
+  #    "vesa"
+  #    "modesetting"
+  #  ];
+  #};
 
   # Audio
   hardware.pulseaudio.enable = false;
@@ -77,7 +77,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    xfce.xfce4-terminal
+    #xfce.xfce4-terminal
     gcc
     pkgsCross.armv7l-hf-multiplatform.buildPackages.gcc
   ];
