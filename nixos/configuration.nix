@@ -37,8 +37,8 @@
   # Desktop environment
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    displayManager.lightdm.enable = true;
+    desktopManager.xfce.enable = true;
     # VirtualBox graphics driver
     videoDrivers = [
       "vmware"
@@ -77,7 +77,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    gnome-terminal
+    xfce.xfce4-terminal
     firefox
     gcc
     pkgsCross.armv7l-hf-multiplatform.buildPackages.gcc
