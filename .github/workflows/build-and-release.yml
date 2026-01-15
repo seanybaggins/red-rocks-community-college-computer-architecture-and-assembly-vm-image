@@ -44,10 +44,14 @@ jobs:
       - name: Build OVA
         run: nix build --cores 1 --print-build-logs
 
+      - name: Generate tag name
+        id: tag
+        run: echo "name=v$(date +%Y.%m.%d-%H_%M_%S)" >> $GITHUB_OUTPUT
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v$(date +%Y.%m.%d-%H_%M_%S)
+          tag_name: ${{ steps.tag.outputs.name }}
           files: result/*.ova
           draft: false
           prerelease: false
