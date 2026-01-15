@@ -78,7 +78,6 @@
   # System packages
   environment.systemPackages = with pkgs; [
     xfce.xfce4-terminal
-    firefox
     gcc
     pkgsCross.armv7l-hf-multiplatform.buildPackages.gcc
   ];
