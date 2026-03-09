@@ -70,7 +70,21 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.tag.outputs.name }}
-          files: result/*.ova
+          files: |
+            result/vm-part-*
+            result/reassemble.sh
           draft: false
           prerelease: false
           generate_release_notes: true
+          body: |
+            ## Download Instructions
+
+            1. Download all `vm-part-*` files and `reassemble.sh`
+            2. Run `./reassemble.sh` to reconstruct the VM image
+            3. Import `rrcc-vm.ova` into VirtualBox
+
+            The VM includes:
+            - XFCE Desktop Environment
+            - GCC for x86_64
+            - ARM cross-compilation toolchain
+            - Default user: `student` / password: `student`

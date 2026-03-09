@@ -35,7 +35,28 @@
         default = inputs.self.packages.x86_64-linux.vmImage;
 
         vmImage =
-          inputs.self.nixosConfigurations.rrcc-comp-arch-and-assembly-vm.config.system.build.virtualBoxOVA;
+          pkgs.runCommand "split-ova"
+            {
+              nativeBuildInputs = [ pkgs.coreutils ];
+            }
+            ''
+              mkdir -p $out
+              # Copy the OVA
+              cp ${inputs.self.nixosConfigurations.rrcc-comp-arch-and-assembly-vm.config.system.build.virtualBoxOVA}/*.ova $out/vm.ova
+              cd $out
+
+              # Split into 1.9GB chunks to stay under GitHub's 2GB limit
+              split -b 1900M -d vm.ova vm-part-
+              rm vm.ova
+
+              # Create a reassembly script for users
+              cat > reassemble.sh << 'EOF'
+              #!/usr/bin/env bash
+              cat vm-part-* > rrcc-vm.ova
+              echo "VM image reassembled: rrcc-vm.ova"
+              EOF
+              chmod +x reassemble.sh
+            '';
 
       };
 
